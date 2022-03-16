@@ -40,7 +40,9 @@ body {
 h2 {
     font-family: 'Sawarabi Gothic', sans-serif;
     font-size: 10vh;
+    margin-left: 20px;
 }
+
 
 #starter {
     border: black 2px solid;
