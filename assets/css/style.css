@@ -43,6 +43,30 @@ h2 {
     margin-left: 20px;
 }
 
+.playQuest button {
+    border: black 2px solid;
+    background: orange;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    width: auto;
+    height: auto;
+    font-size: 2vh;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.starter {
+    border: black 2px solid;
+    box-shadow: rgb(236, 236, 236) 2px 2px 0,
+    black 4px 4px 0;
+    background: orange;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    width: auto;
+    height: auto;
+    font-size: 3vh;
+    position: absolute;
+    left: 50%;
+    cursor: pointer;
+}
 
 #starter {
     border: black 2px solid;
@@ -57,10 +81,12 @@ h2 {
     left: 50%;
     cursor: pointer;
 }
+
 #starter:hover {
     animation: funSpin 1s ease-in-out;
 }
-#starter:active {
+
+button:active, #starter:active {
     background: rgb(255, 102, 0);
 }
 

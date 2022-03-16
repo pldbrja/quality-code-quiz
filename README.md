@@ -6,7 +6,11 @@ For the fourth week, we were tasked with using our newer Javascript knowledge an
 
 Code Quiz (LINK TBA)
 
-TBA
+The quiz itself is a mixture of HTML and Javascript inserting the questions as the user answers and continues to the next screen. As a suggestion, a back button was added to ensure that if the user wanted to redo a previous question in the time limit that they would be able to do so.
+
+A goal of this is to add a progress bar that appears at the top of the screen alongside the timer and (local) scores.
+
+Much of this is still under construction, but will be present in the final product (probably).
 
 ## Screenshots
 
