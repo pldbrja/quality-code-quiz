@@ -9,10 +9,13 @@
     </head>
 
     <body>
+        <h3 id="timedown"></h3>
+        <button id="scoreButton">Scoreboard</button>
+
         <div id="playbox">
             <div id="playfield">
 
-            <div id="landing-screen" data-active="visible" data-state="hidden">
+            <div id="landing-screen">
 
                 <h2>Quick Code Quiz</h2>
 
@@ -20,31 +23,10 @@
 
                 <p>Wanna play?</p>
 
-            <button id="starter"> Let's go! </button>
+            <button id="starter" onclick="beginQuiz()"> Let's go! </button>
             </div>
 
-            <div id="questions-container">
-
-            <div class="playQuest" data-active="visible" data-state="hidden">
-               <button class="next">Next</button>
-            </div>
-
-            <div class="playQuest" data-active="visible" data-state="hidden">
-                <button class="back">Previous</button> <button class="next">Next</button>
-            </div>
-
-            <div class="playQuest" data-active="visible" data-state="hidden">
-                <button class="back">Previous</button> <button class="next">Next</button>
-            </div>
-
-            <div class="playQuest" data-active="visible" data-state="hidden">
-                <button class="back">Previous</button> <button class="finish">Finish</button>
-            </div>
-
-            <div id="playLead" data-active="visible" data-state="hidden">
-            </div>
-
-            </div>
+            <div id="questions-container"></div>
 
             </div>
         </div>

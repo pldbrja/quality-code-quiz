@@ -1,7 +1,9 @@
 var initialsInput = document.querySelector("name");
 var finalScore = 0;
-var startScreen = document.querySelector("#landing-screen")
-var endButton = document.querySelector("#finish");
+var endButton = document.getElementById("finish");
+var quizContainer = document.getElementById("questions-container");
+var startScreen = document.getElementById("landing-screen");
+var leaderButton = document.querySelector("#scoreButton")
 
 var userScore = {
     finalCount: finalScore.value,
@@ -48,26 +50,41 @@ var quizQuestions = [
 
 ];
 
-function playQuiz() {
-    var quizQuestions = document.querySelectorAll(".playQuest");
-    var startQuiz = document.querySelector("#starter");
-    const questions = Array.from(quizQuestions);
+var quizTimer = document.querySelector("#timedown")
+quizTimer.setAttribute ("style", "display: none;");
 
-    startQuiz.addEventListener("click", function(){
-        if (element.matches(startScreen)) {
-            if (state === "visible") {
-            element.dataset.state = "hidden";
-            element.setAttributes({
-                "data-state": "hidden",
-                "style": "display: none",
-            })
+function beginQuiz() {
+    var timeLimit = 59;
 
-            } else {
-            element.dataset.state = "visible";
-            }
+    countDown;
+    
+    if (startScreen.hasAttribute("style", "display: none;") !== true) {
+    startScreen.setAttribute("style", "display: none;")
+
+    quizContainer.setAttribute("style","display: block;");
+
+    quizTimer.setAttribute("style","top: 0; right: 0;position: absolute; margin-right: 10px; box-shadow: -2px 2px rgb(236, 236, 236), -4px 4px black; border: 2px solid black; margin-top: 10px; background: orange; display: block;")
+    quizTimer.textContent = '60';
+    }
+
+    var countDown = setInterval(function () {
+
+        if (timeLimit > -1) {
+            quizTimer.textContent = timeLimit;
+            timeLimit--;
+        } else {
+            alert("Time's up!");
+            quizTimer.textContent = '';
+            resetCountDown();
+            return;
         }
-    });
-}
+    }, 1000);
+
+    function resetCountDown() {
+        clearInterval(countDown);
+    };
+
+};
 
 //endButton.addEventListener("click", function(event){
     //event.preventDefault();
@@ -86,4 +103,5 @@ setTimeout(function fullscrBG() {
 
 var contentLD = setTimeout(function () {
     document.querySelector("#playbox").setAttribute("style","opacity: 1; animation: fadeIn .3s ease-in; ")
+    leaderButton.setAttribute("style","opacity: 1; animation: fadeIn .3s ease-in; ")
 }, 1700);

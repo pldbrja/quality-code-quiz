@@ -4,10 +4,11 @@ body {
     background: black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2vh;
+    margin: 0;
 }
 
 #playbox {
-    margin: 0 auto;
+    margin: 15px auto;
     width: 50%;
     height: 50%;
     opacity: 0;
@@ -24,6 +25,10 @@ body {
     height: 200px;
     position: absolute;
     color: rgb(236, 236, 236);
+}
+
+#landing-screen {
+    display: block;
 }
 
 @keyframes fadeIn {
@@ -43,18 +48,7 @@ h2 {
     margin-left: 20px;
 }
 
-.playQuest button {
-    border: black 2px solid;
-    background: orange;
-    font-family: 'Sawarabi Gothic', sans-serif;
-    width: auto;
-    height: auto;
-    font-size: 2vh;
-    cursor: pointer;
-    margin: 0 auto;
-}
-
-.starter {
+button {
     border: black 2px solid;
     box-shadow: rgb(236, 236, 236) 2px 2px 0,
     black 4px 4px 0;
@@ -63,23 +57,22 @@ h2 {
     width: auto;
     height: auto;
     font-size: 3vh;
-    position: absolute;
-    left: 50%;
     cursor: pointer;
+}
+
+#scoreButton {
+    opacity: 0;
+    margin: 10px 10px;
+}
+
+#questions-container {
+    display: none;
+    z-index: 3;
 }
 
 #starter {
-    border: black 2px solid;
-    box-shadow: rgb(236, 236, 236) 2px 2px 0,
-    black 4px 4px 0;
-    background: orange;
-    font-family: 'Sawarabi Gothic', sans-serif;
-    width: auto;
-    height: auto;
-    font-size: 3vh;
     position: absolute;
     left: 50%;
-    cursor: pointer;
 }
 
 #starter:hover {
