@@ -46,7 +46,7 @@ var quizQuestions = [
         }
     }
 
-]
+];
 
 function playQuiz() {
     var quizQuestions = document.querySelectorAll(".playQuest");
@@ -69,15 +69,15 @@ function playQuiz() {
     });
 }
 
-endButton.addEventListener("click", function(event){
-    event.preventDefault();
-    if (e) {
-        alert("Are you sure you want to submit that?")
-        return;
-    } else {
-        recordScore()
-    }
-});
+//endButton.addEventListener("click", function(event){
+    //event.preventDefault();
+    //if (e) {
+       // alert("Are you sure you want to submit that?")
+        //return;
+    //} else {
+    //    recordScore()
+    //}
+//});
 
 
 setTimeout(function fullscrBG() {
