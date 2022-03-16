@@ -1,14 +1,15 @@
-var initialsInput = document.querySelector("name");
+var initialsInput = document.querySelector("#name");
 var finalScore = 0;
 var endButton = document.getElementById("finish");
 var quizContainer = document.getElementById("questions-container");
 var startScreen = document.getElementById("landing-screen");
 var leaderButton = document.getElementById("scoreButton");
 var scoreScreen = document.getElementById("score-screen");
+var endScreen = document.getElementById("finish-screen");
+var scoreBoard = document.querySelector("#score-record");
 
-var userScore = {
-    finalCount: finalScore.value,
-};
+
+var userInitials = [];
 
 const quizQuestions = [
     {
@@ -51,10 +52,6 @@ const quizQuestions = [
 
 ];
 
-function resetCountDown() {
-    clearInterval(countDown);
-};
-
 var quizTimer = document.querySelector("#timedown")
 quizTimer.setAttribute ("style", "display: none;");
 
@@ -81,15 +78,24 @@ function beginQuiz() {
             alert("Time's up!");
             quizTimer.textContent = '';
             quizTimer.setAttribute ("style", "display: none;")
+            
+            quizContainer.setAttribute("style", "display: none;")
+            endScreen.setAttribute("style", "display: block;");
             resetCountDown();
             return;
         }
-    }, 1000);
+    }, 10);
+
+    function resetCountDown() {
+        clearInterval(countDown);
+    };
 
 };
 
 function playQuiz() {
-    var selectQuestionName = document.getElementById("question-title")
+    var selectQuestionName = document.getElementById
+    ("question-title")
+    var answerResponse = document.getElementById("comment-text")
     var selectQuestion = 0;
 
     if (quizQuestions[selectQuestion].value === 1) {
@@ -98,6 +104,37 @@ function playQuiz() {
     } else {
         answerResponse.textContent = "Wrong!";
     }
+
+    document.querySelector("#scoreannounce").textContent = "Your final score was: " + finalScore;
+}
+
+function scoreRender(){
+    scoreBoard.innerHTML = "";
+
+    for (var i =0; i < userInitials.length; i++) {
+        var userInitials = userInitials[i];
+
+        var entry = document.createElement("li");
+
+        entry.textContent = userInitials;
+        entry.setAttribute("data-index", i);
+
+        scoreBoard.appendChild(entry);
+    }
+};
+
+function init() {
+    var initialRecords = JSON.parse(localStorage.getItem("userInitials"));
+
+    if (initialRecords !== null) {
+        userInitials = initialRecords;
+    }
+
+    scoreRender()
+}
+
+function recordStorage() {
+    localStorage.setItem("userInitials", JSON.stringify(userInitials));
 }
 
 
@@ -115,8 +152,28 @@ leaderButton.addEventListener("click", function() {
     }
 });
 
+document.querySelector("#submit").addEventListener("click", function(event){
+    event.preventDefault();
+    var initials = initialsInput.value.trim()
 
+    if (initials === "") {
+        return;
+    }
 
+    userInitials.push(initials);
+    
+    initialsInput.value = "";
+
+    redirect()
+
+    localStorage.setItem("userInitials", JSON.stringify(userInitials));
+    scoreRender()
+});
+
+function redirect() {
+    endScreen.setAttribute("style","display: none;")
+    scoreScreen.setAttribute("style", "display: block;")
+}
 setTimeout(function fullscrBG() {
     document.querySelector("body").setAttribute("style", "background: rgb(236, 236, 236); transition: .5s background ease-in;")
 }, 1000);

@@ -77,6 +77,7 @@ button {
 #questions-container h2 {
     font-size: 6vh;
     padding: .7em 0 0 .7em;
+    position: relative;
 }
 
 #questions-container li {
@@ -88,6 +89,27 @@ button {
 #score-screen {
     z-index: 3;
     display: none;
+}
+
+#finish-screen {
+    display: none;
+}
+
+input[type=submit] {
+    border: black 2px solid;
+    box-shadow: rgb(236, 236, 236) 2px 2px 0,
+    black 4px 4px 0;
+    background: orange;
+    font-family: 'Sawarabi Gothic', sans-serif;
+    width: auto;
+    height: auto;
+    font-size: 2vh;
+    cursor: pointer;
+}
+
+h4 {
+    position: absolute;
+    bottom: 0;
 }
 
 #starter {
