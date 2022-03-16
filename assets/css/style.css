@@ -31,6 +31,10 @@ body {
     display: block;
 }
 
+#score-screen {
+    display: none;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -68,6 +72,22 @@ button {
 #questions-container {
     display: none;
     z-index: 3;
+}
+
+#questions-container h2 {
+    font-size: 6vh;
+    padding: .7em 0 0 .7em;
+}
+
+#questions-container li {
+    padding-left: 30%;
+    list-style-type: none;
+    font-size: 3vh;
+}
+
+#score-screen {
+    z-index: 3;
+    display: none;
 }
 
 #starter {

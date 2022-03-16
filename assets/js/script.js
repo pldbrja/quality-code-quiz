@@ -3,52 +3,57 @@ var finalScore = 0;
 var endButton = document.getElementById("finish");
 var quizContainer = document.getElementById("questions-container");
 var startScreen = document.getElementById("landing-screen");
-var leaderButton = document.querySelector("#scoreButton")
+var leaderButton = document.getElementById("scoreButton");
+var scoreScreen = document.getElementById("score-screen");
 
 var userScore = {
     finalCount: finalScore.value,
 };
 
-var quizQuestions = [
+const quizQuestions = [
     {
         question: "In HTML, what attribute would you need to add to an anchor tag to link it?",
-        answers: {
-            A: "src",
-            B: "href",
-            C: "link",
-            D: "id",
-        },
+        answers: [
+            {option: "src", value: 0},
+            {option: "href", value: 1},
+            {option: "link", value: 0},
+            {option: "id", value: 0},
+        ],
         question: "Javascript was invented in...",
-        answers: {
-            A: "2000",
-            B: "1992",
-            C: "1999",
-            D: "1995",
-        },
-        question: "Which of the following would you use to create a clickable button through a .js file?",
-        answers: {
-            A: "onclick",
-            B: ".addEventListener",
-            C: ":active",
-            D: "button",
-        },
+        answers: [
+            {option: "2000", value: 0},
+            {option: "1992", value: 0},
+            {option: "1999", value: 0},
+            {option: "1995", value: 1},
+        ],
+        question: "Which of the following would you use to create a clickable button through an HTML file?",
+        answers: [
+            {option: "onclick", value: 1},
+            {option: ".addEventListener", value: 0},
+            {option: ":active", value: 0},
+            {option: "button", value: 0},
+        ],
         question: "Which of the following is a pseudo-element?",
-        answers: {
-            A: ":active",
-            B: ":target",
-            C: ":first-child",
-            D: "::before",
-        },
+        answers: [
+            {option: ":active", value: 0},
+            {option: ":target", value: 0},
+            {option: ":first-child", value: 0},
+            {option: "::before", value: 1},
+        ],
         question: "A CSS file must be linked..",
-        answers: {
-            A: "Between the Head tags.",
-            B: "Right after the first HTML tag.",
-            C: "In the Body tags.",
-            D: "Before the HTML tag.",
-        }
+        answers: [
+            {option: "Between the Head tags.", value: 1},
+            {option: "Right after the first HTML tag.", value: 0},
+            {option: "In the Body tags.", value: 0},
+            {option: "Before the HTML tag.", value: 0},
+        ]
     }
 
 ];
+
+function resetCountDown() {
+    clearInterval(countDown);
+};
 
 var quizTimer = document.querySelector("#timedown")
 quizTimer.setAttribute ("style", "display: none;");
@@ -75,26 +80,41 @@ function beginQuiz() {
         } else {
             alert("Time's up!");
             quizTimer.textContent = '';
+            quizTimer.setAttribute ("style", "display: none;")
             resetCountDown();
             return;
         }
     }, 1000);
 
-    function resetCountDown() {
-        clearInterval(countDown);
-    };
-
 };
 
-//endButton.addEventListener("click", function(event){
-    //event.preventDefault();
-    //if (e) {
-       // alert("Are you sure you want to submit that?")
-        //return;
-    //} else {
-    //    recordScore()
-    //}
-//});
+function playQuiz() {
+    var selectQuestionName = document.getElementById("question-title")
+    var selectQuestion = 0;
+
+    if (quizQuestions[selectQuestion].value === 1) {
+        finalScore++
+        answerResponse.textContent = "Correct!";
+    } else {
+        answerResponse.textContent = "Wrong!";
+    }
+}
+
+
+leaderButton.addEventListener("click", function() {
+    if (startScreen.hasAttribute("style","display: none;") !== true) {
+        startScreen.setAttribute("style","display: none;")
+        scoreScreen.setAttribute("style","display: block;")
+    } 
+    else if (quizContainer.hasAttribute("style","display: none;") !== true) {
+        quizContainer.setAttribute("style","display: none;");
+        startScreen.setAttribute("style","display: none;");
+    } else if (scoreScreen.hasAttribute("style","display: none;") == true) {
+        startScreen.setAttribute("style","display: block;")
+        scoreScreen.setAttribute("style","display: none;")
+    }
+});
+
 
 
 setTimeout(function fullscrBG() {

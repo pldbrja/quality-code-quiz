@@ -10,7 +10,7 @@
 
     <body>
         <h3 id="timedown"></h3>
-        <button id="scoreButton">Scoreboard</button>
+        <button id="scoreButton" onclick="openScore()">Scoreboard</button>
 
         <div id="playbox">
             <div id="playfield">
@@ -26,8 +26,14 @@
             <button id="starter" onclick="beginQuiz()"> Let's go! </button>
             </div>
 
-            <div id="questions-container"></div>
+            <div id="questions-container">
+                <h2 id ="question-title"></h2>
+            </div>
 
+            <div id="score-screen">
+                <h2>Scoreboard</h2>
+                
+                <div id="score-record"></div>
             </div>
         </div>
 
