@@ -13,41 +13,54 @@ var userInitials = [];
 
 const quizQuestions = [
     {
+        x: 0,
         question: "In HTML, what attribute would you need to add to an anchor tag to link it?",
         answers: [
-            {option: "src", value: 0},
-            {option: "href", value: 1},
-            {option: "link", value: 0},
-            {option: "id", value: 0},
+        {text: "src", value: 0,},
+        {text: "href", value: 1,},
+        {text: "link", value: 0,},
+        {text: "id", value: 0,}
         ],
+    },
+        {
+        x: 1,
         question: "Javascript was invented in...",
         answers: [
-            {option: "2000", value: 0},
-            {option: "1992", value: 0},
-            {option: "1999", value: 0},
-            {option: "1995", value: 1},
-        ],
+        {text: "2000", value: 0,},
+        {text: "1992", value: 0,},
+        {text: "1999", value: 0,},
+        {text: "1995", value: 1,}
+        ]
+    },
+        {
+        x: 2,
         question: "Which of the following would you use to create a clickable button through an HTML file?",
         answers: [
-            {option: "onclick", value: 1},
-            {option: ".addEventListener", value: 0},
-            {option: ":active", value: 0},
-            {option: "button", value: 0},
-        ],
-        question: "Which of the following is a pseudo-element?",
+        {text: "onclick", value: 1,},
+        {text: ".addEventListener", value: 0,},
+        {text: ":active", value: 0,},
+        {text: "button", value: 0,}
+        ]
+    },
+        {
+        x: 3,
+        question: "Which of the following is a .JS library?",
         answers: [
-            {option: ":active", value: 0},
-            {option: ":target", value: 0},
-            {option: ":first-child", value: 0},
-            {option: "::before", value: 1},
+        {text: "Vue", value: 0,},
+        {text: "Node", value: 0,},
+        {text: "Angular", value: 0,},
+        {text: "jQuery", value: 1,}
         ],
+    },
+        {
+        x: 4,
         question: "A CSS file must be linked..",
         answers: [
-            {option: "Between the Head tags.", value: 1},
-            {option: "Right after the first HTML tag.", value: 0},
-            {option: "In the Body tags.", value: 0},
-            {option: "Before the HTML tag.", value: 0},
-        ]
+        {text: "Between the Head tags.", value: 1,},
+        {text: "Right after the first HTML tag.", value: 0,},
+        {text: "In the Body tags.", value: 0,},
+        {text: "Before the HTML tag.", value: 0,}
+    ]
     }
 
 ];
@@ -55,6 +68,9 @@ const quizQuestions = [
 var quizTimer = document.querySelector("#timedown")
 quizTimer.setAttribute ("style", "display: none;");
 
+
+// beginQuiz only will run once if the user does not click on the Scoreboard button. If the scoreboard is clicked, then returning to the landing screen will cause the play button to run an invisible timer w/o the questions.
+// Refreshing the page fixes the issue, as most of the buttons can only be used once due to the display attribute changes.
 function beginQuiz() {
     var timeLimit = 59;
 
@@ -84,7 +100,9 @@ function beginQuiz() {
             resetCountDown();
             return;
         }
-    }, 10);
+    }, 100);
+
+    playQuiz();
 
     function resetCountDown() {
         clearInterval(countDown);
@@ -92,13 +110,33 @@ function beginQuiz() {
 
 };
 
-function playQuiz() {
-    var selectQuestionName = document.getElementById
+
+//Code does not recognize much of the quizQuestions array and options, leading it to not push the text into the textContent options.
+function playQuiz(x) {
+    var questionName = document.getElementById
     ("question-title")
     var answerResponse = document.getElementById("comment-text")
-    var selectQuestion = 0;
+    var questionIndex = 0;
+    var options = document.querySelectorAll(".quizx");
+    const optionA = document.querySelector("#optionA");
+    const optionB = document.querySelector("#optionB");
+    const optionC = document.querySelector("#optionC");
+    const optionD = document.querySelector("#optionD");
 
-    if (quizQuestions[selectQuestion].value === 1) {
+    questionName.textContent = quizQuestions[questionIndex(x)].question;
+
+    optionA.textContent = quizQuestions[questionIndex(x)].answers[0].text;
+    optionB.textContent = quizQuestions[questionIndex(x)].answers[1].text;
+    optionC.textContent = quizQuestions[questionIndex(x)].answers[2].text;
+    optionD.textContent = quizQuestions[questionIndex(x)].answers[3].text;
+
+
+    //A line to make the questions progress after answer is chosen, but is unable to be read as the statement its meant to be.
+    if (selectQuestion < quizQuestions.length) {
+        return;
+    }
+
+    if (options.value == 1) {
         finalScore++
         answerResponse.textContent = "Correct!";
     } else {
@@ -108,10 +146,14 @@ function playQuiz() {
     document.querySelector("#scoreannounce").textContent = "Your final score was: " + finalScore;
 }
 
+var resetB = document.querySelector("#clear");
+
+
+// Rendering the scoreboard did not work due to the function struggling to pull the userInitials variable from the localStorage.
 function scoreRender(){
     scoreBoard.innerHTML = "";
 
-    for (var i =0; i < userInitials.length; i++) {
+    for (var i = 0; i < userInitials.length; i++) {
         var userInitials = userInitials[i];
 
         var entry = document.createElement("li");
@@ -133,25 +175,28 @@ function init() {
     scoreRender()
 }
 
+// If the function is run in another function, it will not find userInitials which causes it to see it as null.
 function recordStorage() {
     localStorage.setItem("userInitials", JSON.stringify(userInitials));
 }
 
 
+// Can only work once, struggles to loop otherwise. If clicked, returning back to the landing screen will cause all other buttons to stop working. Issue with the play button is recorded near the start function.
 leaderButton.addEventListener("click", function() {
-    if (startScreen.hasAttribute("style","display: none;") !== true) {
+    if (startScreen.hasAttribute("style","display: none;") === true) {
         startScreen.setAttribute("style","display: none;")
         scoreScreen.setAttribute("style","display: block;")
-    } 
-    else if (quizContainer.hasAttribute("style","display: none;") !== true) {
-        quizContainer.setAttribute("style","display: none;");
-        startScreen.setAttribute("style","display: none;");
-    } else if (scoreScreen.hasAttribute("style","display: none;") == true) {
+        quizContainer.setAttribute("style","display: none;")
+        endScreen.setAttribute("style","display: none;")
+    } else {
         startScreen.setAttribute("style","display: block;")
         scoreScreen.setAttribute("style","display: none;")
+        quizContainer.setAttribute("style","display: none;")
+        endScreen.setAttribute("style","display: none;")
     }
 });
 
+// localStorage.setItem issue documented above. Surprisingly enough, this code did work.
 document.querySelector("#submit").addEventListener("click", function(event){
     event.preventDefault();
     var initials = initialsInput.value.trim()
@@ -164,16 +209,20 @@ document.querySelector("#submit").addEventListener("click", function(event){
     
     initialsInput.value = "";
 
-    redirect()
-
     localStorage.setItem("userInitials", JSON.stringify(userInitials));
     scoreRender()
 });
 
 function redirect() {
-    endScreen.setAttribute("style","display: none;")
-    scoreScreen.setAttribute("style", "display: block;")
+    endScreen.setAttribute("style","display: none;");
+    scoreScreen.setAttribute("style", "display: block;");
 }
+
+function mainScreen() {
+    scoreScreen.setAttribute("style","display: none;");
+    startScreen.setAttribute("style", "display: block;");
+}
+
 setTimeout(function fullscrBG() {
     document.querySelector("body").setAttribute("style", "background: rgb(236, 236, 236); transition: .5s background ease-in;")
 }, 1000);
@@ -182,3 +231,8 @@ var contentLD = setTimeout(function () {
     document.querySelector("#playbox").setAttribute("style","opacity: 1; animation: fadeIn .3s ease-in; ")
     leaderButton.setAttribute("style","opacity: 1; animation: fadeIn .3s ease-in; ")
 }, 1700);
+
+// Worked.
+resetB.addEventListener("click", function() {
+    localStorage.clear();
+});

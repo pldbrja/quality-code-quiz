@@ -54,6 +54,7 @@ h2 {
 
 button {
     border: black 2px solid;
+    margin-top: 5px;
     box-shadow: rgb(236, 236, 236) 2px 2px 0,
     black 4px 4px 0;
     background: orange;

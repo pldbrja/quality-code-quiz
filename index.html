@@ -27,7 +27,13 @@
             </div>
 
             <div id="questions-container">
-                <h2 id ="question-title"></h2>
+                <h2 id ="question-title">Wepwace</h2>
+                <ul>
+                    <li><button id="optionA">Wepwace</button></li>
+                    <li><button id="optionB">Wepwace</button></li>
+                    <li><button id="optionC">Wepwace</button></li>
+                    <li><button id="optionD">Wepwace</button></li>
+                </ul>
                 <h4 id="comment-text"></h4>
             </div>
 
@@ -36,14 +42,14 @@
                 <p id="score-announce"></p>
                 <form id="name-entry" method="post">
                 <input type="text" id="name" name="name" required minlength="1" maxlength="2">
-                <input type="submit" value="Submit" id="submit" onclick=redirect()>
+                <input type="submit" value="Submit" id="submit" onclick="redirect()">
                 </form>
             </div>
 
             <div id="score-screen">
                 <h2>Scoreboard</h2>
                 <ul id="score-record"></ul>
-                <button id="back">Back</button> <button id="clear">Clear</button>
+                <button id="back" onclick="mainScreen()">Back</button> <button id="clear">Clear</button>
             </div>
         </div>
 
