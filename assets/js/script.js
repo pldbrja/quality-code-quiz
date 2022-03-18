@@ -70,13 +70,14 @@ quizTimer.setAttribute ("style", "display: none;");
 
 
 // beginQuiz only will run once if the user does not click on the Scoreboard button. If the scoreboard is clicked, then returning to the landing screen will cause the play button to run an invisible timer w/o the questions.
+// UPDATE: The scoreboard is definitely the sole issue with the buttons. You can run a loop of the quiz if you don't click it.
 // Refreshing the page fixes the issue, as most of the buttons can only be used once due to the display attribute changes.
 function beginQuiz() {
     var timeLimit = 59;
 
     countDown;
     
-    if (startScreen.hasAttribute("style", "display: none;") !== true) {
+    if (startScreen.hasAttribute("class", "display: none;") !== true) {
     startScreen.setAttribute("style", "display: none;")
 
     quizContainer.setAttribute("style","display: block;");
@@ -101,6 +102,8 @@ function beginQuiz() {
             return;
         }
     }, 100);
+
+    document.querySelector("#score-announce").textContent = "Your final score was: " + finalScore;
 
     playQuiz();
 
@@ -142,8 +145,6 @@ function playQuiz(x) {
     } else {
         answerResponse.textContent = "Wrong!";
     }
-
-    document.querySelector("#scoreannounce").textContent = "Your final score was: " + finalScore;
 }
 
 var resetB = document.querySelector("#clear");

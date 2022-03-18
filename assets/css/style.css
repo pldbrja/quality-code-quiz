@@ -16,6 +16,10 @@ body {
     position: relative;
 }
 
+.invisible {
+    display: none;
+}
+
 #playbox::before {
     content: "+";
     font-size: 30px;
