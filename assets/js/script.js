@@ -73,7 +73,7 @@ quizTimer.setAttribute ("style", "display: none;");
 // UPDATE: The scoreboard is definitely the sole issue with the buttons. You can run a loop of the quiz if you don't click it.
 // Refreshing the page fixes the issue, as most of the buttons can only be used once due to the display attribute changes.
 function beginQuiz() {
-    var timeLimit = 59;
+    var timeLimit = 79;
 
     countDown;
     
@@ -83,7 +83,7 @@ function beginQuiz() {
     quizContainer.setAttribute("style","display: block;");
 
     quizTimer.setAttribute("style","top: 0; right: 0;position: absolute; margin-right: 10px; box-shadow: -2px 2px rgb(236, 236, 236), -4px 4px black; border: 2px solid black; margin-top: 10px; background: orange; display: block;")
-    quizTimer.textContent = '60';
+    quizTimer.textContent = '80';
     }
 
     var countDown = setInterval(function () {
@@ -126,7 +126,7 @@ function playQuiz(x) {
     const optionC = document.querySelector("#optionC");
     const optionD = document.querySelector("#optionD");
 
-    questionName.textContent = quizQuestions[questionIndex(x)].question;
+    questionName.textContent = quizQuestions(x).question;
 
     optionA.textContent = quizQuestions[questionIndex(x)].answers[0].text;
     optionB.textContent = quizQuestions[questionIndex(x)].answers[1].text;
@@ -135,8 +135,13 @@ function playQuiz(x) {
 
 
     //A line to make the questions progress after answer is chosen, but is unable to be read as the statement its meant to be.
-    if (selectQuestion < quizQuestions.length) {
-        return;
+    if (beginQuiz) {
+        playQuiz(0)
+    }
+
+    if (questionIndex < quizQuestions.length) {
+        questionIndex++;
+        playQuiz(x);
     }
 
     if (options.value == 1) {
@@ -144,6 +149,7 @@ function playQuiz(x) {
         answerResponse.textContent = "Correct!";
     } else {
         answerResponse.textContent = "Wrong!";
+        timeLimit - 10;
     }
 }
 

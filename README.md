@@ -4,16 +4,16 @@ For the fourth week, we were tasked with using our newer Javascript knowledge an
 
 ## About the Project
 
-Code Quiz (LINK TBA)
+[Code Quiz](https://pldbrja.github.io/quality-code-quiz/)
 
 The quiz itself is a mixture of HTML and Javascript inserting the questions as the user answers and continues to the next screen.
 
-Initially, I wanted to try to have one div that acted like the template for all of the questions that would have the h2 tag include the question, while a ul list would be appended below with the answers.
+If it had worked properly, the game would've included a question that would've been pushed into the H2 element on the screen that appears after starting the game. The answers would have been listed below in the corresponding LI elements, but due to an assortment of issues that came with attempting to troubleshoot certain elements, there are several pieces to this assignment that did not reach the current state of the application.
 
-Will update this.. a lot.
+Within the code are comments identifying the parts of the code that had the issues, and what occurred that caused it to become as buggy as it was.
 
-Much of this is still under construction, but will be present in the final product (probably).
+In the end, the greatest struggle was the attempt to freehand a majority of the code while taking pointers from a variety of sites. Although the final project is not up to what was requested in the user story, it will not be the last time this project was worked on. There will be updates in the future to return and fix the issues in the page.
 
 ## Screenshots
 
-TBA
+![Code Quiz Screenshot](./assets/images/code-quiz-thumbnail.png)
